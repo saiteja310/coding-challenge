@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourierService.Implementation.Validators
+namespace CourierService.Implementation.DiscountValidationRules
 {
     public static class DistanceValidationRulesFactory
     {

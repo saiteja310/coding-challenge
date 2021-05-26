@@ -1,8 +1,8 @@
 ﻿using CourierService.Interfaces;
 using CourierService.Models;
-namespace CourierService.Implementation.Validators
+namespace CourierService.Implementation.DiscountValidationRules
 {
-    public class InBetweenValidator : IDiscountValidationRule
+    internal class InBetweenValidator : IDiscountValidationRule
     {
         private readonly double _lowerBound = 0.0;
         private readonly double _upperBound = 0.0;

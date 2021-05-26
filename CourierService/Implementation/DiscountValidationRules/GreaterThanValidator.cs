@@ -1,8 +1,8 @@
 ﻿using CourierService.Interfaces;
 using CourierService.Models;
-namespace CourierService.Implementation.Validators
+namespace CourierService.Implementation.DiscountValidationRules
 {
-    public class GreaterThanValidator : IDiscountValidationRule
+    internal class GreaterThanValidator : IDiscountValidationRule
     {
         private readonly double _value;
         private readonly ValidationRuleType _type;
