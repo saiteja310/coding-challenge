@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourierService
+namespace CourierService.Implementation.CostCalculators
 {
     public abstract class DeliveryCostCalculator : IDeliveryCostCalculator
     {
@@ -33,6 +33,5 @@ namespace CourierService
             this.Discounts = discounts;
             return this;
         }
-
     }
 }

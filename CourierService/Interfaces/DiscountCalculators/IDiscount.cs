@@ -2,5 +2,6 @@
 {
     public interface IDiscount
     {
+        decimal CalculateDiscount();
     }
 }
