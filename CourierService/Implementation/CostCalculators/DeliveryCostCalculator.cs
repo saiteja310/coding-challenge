@@ -12,7 +12,7 @@ namespace CourierService.Implementation.CostCalculators
     {
         public decimal BasePrice { get; private set; }
         public Package Package { get; private set; }
-        public IEnumerable<IDiscount> Discounts { get; private set; }
+        public IEnumerable<IDiscountCalculator> Discounts { get; private set; }
 
         public abstract decimal Calculate();
 
@@ -28,7 +28,7 @@ namespace CourierService.Implementation.CostCalculators
             return this;
         }
 
-        public virtual IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscount> discounts)
+        public virtual IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscountCalculator> discounts)
         {
             this.Discounts = discounts;
             return this;

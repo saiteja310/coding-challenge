@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourierService.Models
+namespace CourierService.Models.Enum
 {
-    public enum ValidationRuleType
-    { 
-        DISTANCE,
-        WEIGHT
+    public enum DiscountCouponType
+    {
+        PERCENT
     }
 }

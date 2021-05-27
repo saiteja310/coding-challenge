@@ -1,6 +1,7 @@
 ﻿using CourierService.Implementation.DiscountValidationRules;
 using CourierService.Interfaces;
 using CourierService.Models;
+using CourierService.Models.Enum;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

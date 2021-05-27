@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourierService.Interfaces
+namespace CourierService.Models.Enum
 {
-    public interface IPercentDiscountCalculator : IDiscountCalculator
-    {
+    public enum ValidationRuleType
+    { 
+        DISTANCE,
+        WEIGHT
     }
 }

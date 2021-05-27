@@ -1,5 +1,6 @@
 ﻿using CourierService.Interfaces;
 using CourierService.Models;
+using CourierService.Models.Enum;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("CourierService.Tests")]

@@ -1,5 +1,6 @@
 ﻿using CourierService.Interfaces;
 using CourierService.Models;
+using CourierService.Models.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;

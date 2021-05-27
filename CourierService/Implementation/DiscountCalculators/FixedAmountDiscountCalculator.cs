@@ -1,6 +1,5 @@
 ﻿using CourierService.Exceptions;
 using CourierService.Interfaces;
-using CourierService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CourierService.Implementation.DiscountCalculators
 {
-    public class PercentDiscountCalculator : IPercentDiscountCalculator
+    public class FixedAmountDiscountCalculator : IPercentDiscountCalculator
     {
         public double CalculateDiscount(double price, double couponValue)
         {
@@ -22,7 +21,8 @@ namespace CourierService.Implementation.DiscountCalculators
             {
                 throw new InvalidPriceException();
             }
-            return price - (price * couponValue / 100);
+            var result = price - couponValue;
+            return result < 0 ? 0 : result;
         }
     }
 }
