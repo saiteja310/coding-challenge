@@ -8,8 +8,8 @@ namespace CourierService.Exceptions
 {
     public class InvalidPriceException : ArgumentException
     {
-        public InvalidPriceException()
-            : this("Invalid Price given. Please revalidate.")
+        public InvalidPriceException(double price)
+            : this($"Invalid Price {price} given. Please revalidate.")
         {
         }
 

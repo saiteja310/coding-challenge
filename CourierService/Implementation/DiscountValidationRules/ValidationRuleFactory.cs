@@ -9,39 +9,41 @@ using System.Threading.Tasks;
 
 namespace CourierService.Implementation.DiscountValidationRules
 {
-    public static class DistanceValidationRulesFactory
+    public class DistanceValidationRulesFactory
     {
-        public static IDiscountValidationRule CreateGreaterThanDistanceRule(double value)
+        private ValidationRuleType Type => ValidationRuleType.DISTANCE;
+        public IDiscountValidationRule CreateGreaterThanDistanceRule(double value)
         {
-            return new GreaterThanValidator(ValidationRuleType.DISTANCE, value);
+            return new GreaterThanValidator(Type, value);
         }
 
-        public static IDiscountValidationRule CreateInBetweenDistanceRule(double lowerBound, double upperBound)
+        public IDiscountValidationRule CreateInBetweenDistanceRule(double lowerBound, double upperBound)
         {
-            return new InBetweenValidator(ValidationRuleType.DISTANCE, lowerBound, upperBound);
+            return new InBetweenValidator(Type, lowerBound, upperBound);
         }
 
-        public static IDiscountValidationRule CreateLessThanDistanceRule(double value)
+        public IDiscountValidationRule CreateLessThanDistanceRule(double value)
         {
-            return new LessThanValidator(ValidationRuleType.DISTANCE, value);
+            return new LessThanValidator(Type, value);
         }
     }
 
-    public static class WeightValidationRulesFactory
+    public class WeightValidationRulesFactory
     {
-        public static IDiscountValidationRule CreateGreaterThanWeightRule(double value)
+        private ValidationRuleType Type => ValidationRuleType.WEIGHT;
+        public IDiscountValidationRule CreateGreaterThanWeightRule(double value)
         {
-            return new GreaterThanValidator(ValidationRuleType.WEIGHT, value);
+            return new GreaterThanValidator(Type, value);
         }
 
-        public static IDiscountValidationRule CreateInBetweenWeightRule(double lowerBound, double upperBound)
+        public IDiscountValidationRule CreateInBetweenWeightRule(double lowerBound, double upperBound)
         {
-            return new InBetweenValidator(ValidationRuleType.WEIGHT, lowerBound, upperBound);
+            return new InBetweenValidator(Type, lowerBound, upperBound);
         }
 
-        public static IDiscountValidationRule CreateLessThanWeightRule(double value)
+        public IDiscountValidationRule CreateLessThanWeightRule(double value)
         {
-            return new LessThanValidator(ValidationRuleType.WEIGHT, value);
+            return new LessThanValidator(Type, value);
         }
     }
 }

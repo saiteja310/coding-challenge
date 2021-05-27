@@ -1,5 +1,6 @@
 ﻿using CourierService.Exceptions;
 using CourierService.Interfaces;
+using CourierService.Models.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace CourierService.Implementation.DiscountCalculators
 {
-    public class FixedAmountDiscountCalculator : IPercentDiscountCalculator
+    public class FixedAmountDiscountCalculator : IDiscountCalculator
     {
+        public DiscountCouponType DiscountCouponType => DiscountCouponType.FIXED_AMOUNT;
+
         public double CalculateDiscount(double price, double couponValue)
         {
             if (couponValue < 0)
@@ -19,7 +22,7 @@ namespace CourierService.Implementation.DiscountCalculators
             }
             if (price < 0)
             {
-                throw new InvalidPriceException();
+                throw new InvalidPriceException(price);
             }
             var result = price - couponValue;
             return result < 0 ? 0 : result;

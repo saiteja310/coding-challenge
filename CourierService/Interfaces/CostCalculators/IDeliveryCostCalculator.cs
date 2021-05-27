@@ -11,13 +11,13 @@ namespace CourierService.Interfaces
     {
         Package Package { get; }
 
-        IEnumerable<IDiscountCalculator> Discounts { get; }
+        IEnumerable<IDiscount> Discounts { get; }
 
         IDeliveryCostCalculator ForPackage(Package package);
 
-        IDeliveryCostCalculator WithBasePrice(decimal basePrice);
+        IDeliveryCostCalculator WithBasePrice(double basePrice);
 
-        IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscountCalculator> discounts);
+        IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscount> discounts);
 
     }
 }

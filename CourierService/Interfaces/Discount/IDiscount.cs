@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CourierService.Interfaces
 {
-    public interface IPercentDiscountCalculator : IDiscountCalculator
+    public interface IDiscount
     {
+        string CouponCode { get; }
     }
 }

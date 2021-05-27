@@ -1,5 +1,8 @@
-﻿using CourierService.Implementation.CouponCodeGenerator;
+﻿using CourierService.Implementation.CostCalculators;
+using CourierService.Implementation.CouponCodeGenerator;
+using CourierService.Implementation.CouponCodeValidator;
 using CourierService.Implementation.DiscountCalculators;
+using CourierService.Implementation.DiscountValidationRules;
 using CourierService.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -22,8 +25,19 @@ namespace CourierService.Console
 
         private void RegisterServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<IDiscountCalculator, PercentDiscountCalculator>();
+            serviceCollection.AddTransient<IDeliveryCostCalculator, InitialOfferDeliveryCostCalculator>();
+
             serviceCollection.AddSingleton<IDiscountCouponCodeGenerator, StaticDiscountCouponCodeGenerator>();
+
+            serviceCollection.AddSingleton<ICouponCodeValidator, CouponCodeValidator>(); 
+
+            serviceCollection.AddSingleton<IDiscountCalculator, FixedAmountDiscountCalculator>();
+            serviceCollection.AddSingleton<IDiscountCalculator, PercentDiscountCalculator>();
+            serviceCollection.AddSingleton<DiscountCalculatorFactory>();
+
+            serviceCollection.AddSingleton<DistanceValidationRulesFactory>();
+            serviceCollection.AddSingleton<WeightValidationRulesFactory>();
+
             serviceCollection.AddSingleton<RunApplication>();
         }
 

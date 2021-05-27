@@ -1,4 +1,5 @@
 ﻿using CourierService.Implementation.CouponCodeGenerator;
+using CourierService.Implementation.DiscountValidationRules;
 using CourierService.Interfaces;
 using CourierService.Models.Enum;
 using NUnit.Framework;
@@ -13,14 +14,24 @@ namespace CourierService.Tests.CouponCodeGenerators
     [TestFixture]
     class CouponCodeGeneratorTests
     {
+        IDiscountCouponCodeGenerator generator;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            var distance = new DistanceValidationRulesFactory();
+            var weight = new WeightValidationRulesFactory();
+            generator = new StaticDiscountCouponCodeGenerator(distance, weight);
+        }
+
+
         [TestCase("OFR001", true)]
         [TestCase("OFR002", true)]
         [TestCase("OFR003", true)]
         [TestCase("OFR004", false)]
-        [TestCase(null, false)]
+        [TestCase("", false)]
         public void TestStaticDiscountCouponCodeGenerator(string key, bool expected)
         {
-            IDiscountCouponCodeGenerator generator = new StaticDiscountCouponCodeGenerator();
             var result = generator.GenerateDiscountCouponCodes();
             Assert.AreEqual(3, result.Count);
             Assert.AreEqual(expected, result.ContainsKey(key));
@@ -31,7 +42,6 @@ namespace CourierService.Tests.CouponCodeGenerators
         [TestCase("OFR003", 5, DiscountCouponType.PERCENT)]
         public void TestStaticDiscountCouponCodeGeneratorValue(string key, decimal expectedValue, DiscountCouponType type)
         {
-            IDiscountCouponCodeGenerator generator = new StaticDiscountCouponCodeGenerator();
             var result = generator.GenerateDiscountCouponCodes();
             Assert.IsTrue(result.ContainsKey(key));
             Assert.AreEqual(key, result[key].Code);

@@ -8,8 +8,8 @@ namespace CourierService.Interfaces
 {
     public interface ICostCalculator
     {
-        decimal BasePrice { get; }
+        double BasePrice { get; }
 
-        decimal Calculate();
+        double Calculate();
     }
 }

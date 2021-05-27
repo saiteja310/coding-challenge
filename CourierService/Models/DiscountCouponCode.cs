@@ -11,11 +11,11 @@ namespace CourierService.Models
     public class DiscountCouponCode : IEquatable<DiscountCouponCode>
     {
         public string Code { get; }
-        public decimal Value { get; }
+        public double Value { get; }
         public DiscountCouponType DiscountCouponType { get; }
         public IEnumerable<IDiscountValidationRule> DiscountValidationRules { get; }
 
-        public DiscountCouponCode(string code, decimal value, DiscountCouponType discountCouponType, IEnumerable<IDiscountValidationRule> rules)
+        public DiscountCouponCode(string code, double value, DiscountCouponType discountCouponType, IEnumerable<IDiscountValidationRule> rules)
         {
             Code = code;
             Value = value;

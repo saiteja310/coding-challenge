@@ -8,6 +8,7 @@ namespace CourierService.Models.Enum
 {
     public enum DiscountCouponType
     {
-        PERCENT
+        PERCENT,
+        FIXED_AMOUNT
     }
 }

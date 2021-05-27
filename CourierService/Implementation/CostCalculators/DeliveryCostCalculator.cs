@@ -1,4 +1,5 @@
-﻿using CourierService.Interfaces;
+﻿using CourierService.Exceptions;
+using CourierService.Interfaces;
 using CourierService.Models;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace CourierService.Implementation.CostCalculators
 {
     public abstract class DeliveryCostCalculator : IDeliveryCostCalculator
     {
-        public decimal BasePrice { get; private set; }
-        public Package Package { get; private set; }
-        public IEnumerable<IDiscountCalculator> Discounts { get; private set; }
+        public double BasePrice { get; protected set; }
+        public Package Package { get; protected set; }
+        public IEnumerable<IDiscount> Discounts { get; protected set; }
 
-        public abstract decimal Calculate();
+        public abstract double Calculate();
 
         public virtual IDeliveryCostCalculator ForPackage(Package package)
         {
@@ -22,13 +23,17 @@ namespace CourierService.Implementation.CostCalculators
             return this;
         }
 
-        public virtual IDeliveryCostCalculator WithBasePrice(decimal basePrice)
+        public virtual IDeliveryCostCalculator WithBasePrice(double basePrice)
         {
+            if (basePrice < 0)
+            {
+                throw new InvalidPriceException(basePrice);
+            }
             this.BasePrice = basePrice;
             return this;
         }
 
-        public virtual IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscountCalculator> discounts)
+        public virtual IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscount> discounts)
         {
             this.Discounts = discounts;
             return this;

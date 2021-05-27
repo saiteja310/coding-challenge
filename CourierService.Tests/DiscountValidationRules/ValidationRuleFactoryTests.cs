@@ -13,13 +13,24 @@ namespace CourierService.Tests.DiscountValidationRules
     [TestFixture]
     class ValidationRuleFactoryTests
     {
+        private DistanceValidationRulesFactory _distanceValidationRulesFactory;
+        private WeightValidationRulesFactory _weightValidationRulesFactory;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            _distanceValidationRulesFactory = new DistanceValidationRulesFactory();
+            _weightValidationRulesFactory = new WeightValidationRulesFactory();
+        }
+
+
         [TestCase(50, 100, false)]
         [TestCase(100.01, 100.01, false)]
         [TestCase(150, 100, true)]
         public void CreateDistanceGreaterValidationRule(double ruleValue, double packageValue, bool expected)
         {
             Package package = new Package("UnitTestPackage", packageValue, packageValue);
-            IDiscountValidationRule rule = DistanceValidationRulesFactory.CreateGreaterThanDistanceRule(ruleValue);
+            IDiscountValidationRule rule = _distanceValidationRulesFactory.CreateGreaterThanDistanceRule(ruleValue);
             Assert.AreEqual(expected, rule.Validate(package));
         }
 
@@ -29,7 +40,7 @@ namespace CourierService.Tests.DiscountValidationRules
         public void CreateWeightGreaterValidationRule(double ruleValue, double packageValue, bool expected)
         {
             Package package = new Package("UnitTestPackage", packageValue, packageValue);
-            IDiscountValidationRule rule = WeightValidationRulesFactory.CreateGreaterThanWeightRule(ruleValue);
+            IDiscountValidationRule rule = _weightValidationRulesFactory.CreateGreaterThanWeightRule(ruleValue);
             Assert.AreEqual(expected, rule.Validate(package));
         }
 
@@ -39,7 +50,7 @@ namespace CourierService.Tests.DiscountValidationRules
         public void CreateDistanceLesserValidationRule(double ruleValue, double packageValue, bool expected)
         {
             Package package = new Package("UnitTestPackage", packageValue, packageValue);
-            IDiscountValidationRule rule = DistanceValidationRulesFactory.CreateLessThanDistanceRule(ruleValue);
+            IDiscountValidationRule rule = _distanceValidationRulesFactory.CreateLessThanDistanceRule(ruleValue);
             Assert.AreEqual(expected, rule.Validate(package));
         }
 
@@ -49,7 +60,7 @@ namespace CourierService.Tests.DiscountValidationRules
         public void CreateWeightLesserValidationRule(double ruleValue, double packageValue, bool expected)
         {
             Package package = new Package("UnitTestPackage", packageValue, packageValue);
-            IDiscountValidationRule rule = WeightValidationRulesFactory.CreateLessThanWeightRule(ruleValue);
+            IDiscountValidationRule rule = _weightValidationRulesFactory.CreateLessThanWeightRule(ruleValue);
             Assert.AreEqual(expected, rule.Validate(package));
         }
 
@@ -62,7 +73,7 @@ namespace CourierService.Tests.DiscountValidationRules
         public void CreateDistanceLesserValidationRule(double ruleLowerBound, double ruleUpperBound, double packageValue, bool expected)
         {
             Package package = new Package("UnitTestPackage", packageValue, packageValue);
-            IDiscountValidationRule rule = DistanceValidationRulesFactory.CreateInBetweenDistanceRule(ruleLowerBound, ruleUpperBound);
+            IDiscountValidationRule rule = _distanceValidationRulesFactory.CreateInBetweenDistanceRule(ruleLowerBound, ruleUpperBound);
             Assert.AreEqual(expected, rule.Validate(package));
         }
 
@@ -75,7 +86,7 @@ namespace CourierService.Tests.DiscountValidationRules
         public void CreateWeightLesserValidationRule(double ruleLowerBound, double ruleUpperBound, double packageValue, bool expected)
         {
             Package package = new Package("UnitTestPackage", packageValue, packageValue);
-            IDiscountValidationRule rule = WeightValidationRulesFactory.CreateInBetweenWeightRule(ruleLowerBound, ruleUpperBound);
+            IDiscountValidationRule rule = _weightValidationRulesFactory.CreateInBetweenWeightRule(ruleLowerBound, ruleUpperBound);
             Assert.AreEqual(expected, rule.Validate(package));
         }
 
