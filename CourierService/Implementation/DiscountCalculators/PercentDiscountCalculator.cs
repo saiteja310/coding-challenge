@@ -25,7 +25,7 @@ namespace CourierService.Implementation.DiscountCalculators
             {
                 throw new InvalidPriceException(price);
             }
-            return price - (price * couponValue / 100);
+            return (price * couponValue / 100);
         }
     }
 }

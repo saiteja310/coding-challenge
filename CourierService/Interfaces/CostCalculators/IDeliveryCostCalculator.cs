@@ -9,6 +9,8 @@ namespace CourierService.Interfaces
 {
     public interface IDeliveryCostCalculator : ICostCalculator
     {
+        bool IsLoggingEnabled { get; }
+
         Package Package { get; }
 
         IEnumerable<IDiscount> Discounts { get; }
@@ -19,5 +21,6 @@ namespace CourierService.Interfaces
 
         IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscount> discounts);
 
+        IDeliveryCostCalculator WithLogging();
     }
 }

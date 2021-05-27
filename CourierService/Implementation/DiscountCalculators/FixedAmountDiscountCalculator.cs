@@ -24,8 +24,7 @@ namespace CourierService.Implementation.DiscountCalculators
             {
                 throw new InvalidPriceException(price);
             }
-            var result = price - couponValue;
-            return result < 0 ? 0 : result;
+            return couponValue;
         }
     }
 }

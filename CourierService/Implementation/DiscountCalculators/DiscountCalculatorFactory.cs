@@ -16,7 +16,7 @@ namespace CourierService.Implementation.DiscountCalculators
         {
             _discountCalculators = discountCalculators.ToDictionary(e => e.DiscountCouponType, e => e);
         }
-        public double ApplyDiscount(double price, DiscountCouponCode discount)
+        public double CalculateDiscount(double price, DiscountCouponCode discount)
         {
             if (discount is null)
             {

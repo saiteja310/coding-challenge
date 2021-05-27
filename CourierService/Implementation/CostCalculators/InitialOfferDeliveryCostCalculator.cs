@@ -22,17 +22,28 @@ namespace CourierService.Implementation.CostCalculators
             _couponCodeValidator = couponCodeValidator;
             _discountCalculatorFactory = discountCalculatorFactory;
         }
-        
+
         public override double Calculate()
         {
-            var totalPrice = BasePrice + (Package.Weight * 10) + (Package.DistanceInKm * 5);
             var coupon = _couponCodeValidator.GetCouponCode(Discounts.FirstOrDefault());
-            if (!_couponCodeValidator.ValidateCouponCode(Package, coupon))
+
+            double totalPrice = BasePrice + (Package.Weight * 10) + (Package.DistanceInKm * 5);
+            double discount = 0;
+            if (_couponCodeValidator.ValidateCouponCode(Package, coupon))
             {
-                return totalPrice;
+                discount = _discountCalculatorFactory.CalculateDiscount(totalPrice, coupon);
             }
-            totalPrice = _discountCalculatorFactory.ApplyDiscount(totalPrice, coupon);
+            totalPrice -= discount;
+            LogData(Package.PackageName, discount, totalPrice);
             return totalPrice;
+        }
+
+        private void LogData(string packageName, double discount, double totalPrice)
+        {
+            if (IsLoggingEnabled)
+            {
+                System.Console.WriteLine($"{packageName} {discount} {totalPrice}");
+            }
         }
 
         public override IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscount> discounts)

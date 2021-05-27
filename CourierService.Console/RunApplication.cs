@@ -22,12 +22,12 @@ namespace CourierService.Console
             for (int i = 0; i < Convert.ToInt32(input[1]); i++)
             {
                 var (package, discount) = ReadPackage();
-                var result = _deliveryCostCalculator
+                _deliveryCostCalculator
                     .WithBasePrice(basePrice)
                     .ForPackage(package)
                     .WithDiscounts(new List<IDiscount>() { discount })
+                    .WithLogging()
                     .Calculate();
-                System.Console.WriteLine(result);
             }
         }
 

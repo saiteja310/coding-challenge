@@ -11,9 +11,10 @@ namespace CourierService.Implementation.CostCalculators
 {
     public abstract class DeliveryCostCalculator : IDeliveryCostCalculator
     {
-        public double BasePrice { get; protected set; }
-        public Package Package { get; protected set; }
-        public IEnumerable<IDiscount> Discounts { get; protected set; }
+        public double BasePrice { get; private set; }
+        public bool IsLoggingEnabled { get; private set; }
+        public Package Package { get; private set; }
+        public IEnumerable<IDiscount> Discounts { get; private set; }
 
         public abstract double Calculate();
 
@@ -36,6 +37,12 @@ namespace CourierService.Implementation.CostCalculators
         public virtual IDeliveryCostCalculator WithDiscounts(IEnumerable<IDiscount> discounts)
         {
             this.Discounts = discounts;
+            return this;
+        }
+
+        public IDeliveryCostCalculator WithLogging()
+        {
+            this.IsLoggingEnabled = true;
             return this;
         }
     }
