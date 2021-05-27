@@ -1,4 +1,4 @@
-﻿using CourierService.CouponCodeGenerator;
+﻿using CourierService.Implementation.CouponCodeGenerator;
 using CourierService.Interfaces;
 using CourierService.Models.Enum;
 using NUnit.Framework;
