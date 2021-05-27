@@ -13,12 +13,12 @@ namespace CourierService.Tests.DiscountCalculators
     [TestFixture]
     class DiscountCalculatorsTests
     {
-        [TestCase(100, 0, 100)]
-        [TestCase(100, 10, 90)]
-        [TestCase(100, 99.5, 0.5)]
-        [TestCase(100, 100, 0)]
+        [TestCase(100, 0, 0)]
+        [TestCase(100, 10, 10)]
+        [TestCase(100, 99.5, 99.5)]
+        [TestCase(100, 100, 100)]
         [TestCase(0, 10, 0)]
-        [TestCase(99, 7.25, 91.8225)]
+        [TestCase(99, 7.25, 7.1775)]
         public void TestPercentDiscountCalculator(double price, double couponValue, double expected)
         {
             IDiscountCalculator calculator = new PercentDiscountCalculator();
@@ -33,12 +33,12 @@ namespace CourierService.Tests.DiscountCalculators
             Assert.Throws(exceptionType, () => calculator.CalculateDiscount(price, couponValue));
         }
 
-        [TestCase(120, 0, 120)]
-        [TestCase(120, 20, 100)]
-        [TestCase(120, 99.5, 20.5)]
-        [TestCase(100, 100, 0)]
-        [TestCase(0, 10, 0)]
-        [TestCase(99, 7.25, 91.75)]
+        [TestCase(120, 0, 0)]
+        [TestCase(120, 20, 20)]
+        [TestCase(120, 99.5, 99.5)]
+        [TestCase(100, 100, 100)]
+        [TestCase(0, 10, 10)]
+        [TestCase(99, 7.25, 7.25)]
         public void TestFixedDiscountCalculator(double price, double couponValue, double expected)
         {
             IDiscountCalculator calculator = new FixedAmountDiscountCalculator();
