@@ -1,5 +1,8 @@
 ﻿using CourierService.Interfaces;
 using CourierService.Models;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("CourierService.Tests")]
 namespace CourierService.Implementation.DiscountValidationRules
 {
     internal class GreaterThanValidator : IDiscountValidationRule

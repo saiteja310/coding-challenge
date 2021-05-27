@@ -8,6 +8,6 @@ namespace CourierService.Interfaces
 {
     public interface IPercentDiscountCalculator : IDiscount
     {
-
+        IEnumerable<IDiscountValidationRule> DiscountValidationRules { get; }
     }
 }

@@ -9,6 +9,13 @@ namespace CourierService.Implementation.DiscountCalculators
 {
     public class PercentDiscountCalculator : IPercentDiscountCalculator
     {
+        public IEnumerable<IDiscountValidationRule> DiscountValidationRules { get; }
+
+        public PercentDiscountCalculator(IEnumerable<IDiscountValidationRule> discountValidationRules)
+        {
+            DiscountValidationRules = discountValidationRules;
+        }
+
         public decimal CalculateDiscount()
         {
             return 0.0M;
