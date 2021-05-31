@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourierService.Interfaces
 {
-    public interface ICouponCodeValidator
+    public interface ICouponCodeService
     {
         bool ValidateCouponCode(Package package, DiscountCouponCode couponCode);
         DiscountCouponCode GetCouponCode(IDiscount discount);

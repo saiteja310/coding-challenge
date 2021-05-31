@@ -16,7 +16,7 @@ namespace CourierService.Tests.CouponCodeValidator
     [TestFixture]
     class CouponCodeValidatorTests
     {
-        private Implementation.CouponCodeValidator.CouponCodeValidator _couponCodeValidator;
+        private Implementation.CouponCodeValidator.CouponCodeService _couponCodeValidator;
         private Mock<IDiscountCouponCodeGenerator> mockGenerator;
 
         [OneTimeSetUp]
@@ -29,7 +29,7 @@ namespace CourierService.Tests.CouponCodeValidator
         {
             mockGenerator = new Mock<IDiscountCouponCodeGenerator>();
             mockGenerator.Setup(e => e.GenerateDiscountCouponCodes()).Returns(GetTestingCouponCodes(rule));
-            _couponCodeValidator = new Implementation.CouponCodeValidator.CouponCodeValidator(mockGenerator.Object);
+            _couponCodeValidator = new Implementation.CouponCodeValidator.CouponCodeService(mockGenerator.Object);
         }
 
 

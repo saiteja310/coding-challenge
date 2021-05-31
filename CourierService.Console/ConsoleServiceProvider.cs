@@ -1,6 +1,6 @@
 ﻿using CourierService.Implementation.CostCalculators;
 using CourierService.Implementation.CouponCodeGenerator;
-using CourierService.Implementation.CouponCodeValidator;
+using CourierService.Implementation.CouponCodeService;
 using CourierService.Implementation.DiscountCalculators;
 using CourierService.Implementation.DiscountValidationRules;
 using CourierService.Interfaces;
@@ -29,7 +29,7 @@ namespace CourierService.Console
 
             serviceCollection.AddSingleton<IDiscountCouponCodeGenerator, StaticDiscountCouponCodeGenerator>();
 
-            serviceCollection.AddSingleton<ICouponCodeValidator, CouponCodeValidator>(); 
+            serviceCollection.AddSingleton<ICouponCodeService, CouponCodeService>(); 
 
             serviceCollection.AddSingleton<IDiscountCalculator, FixedAmountDiscountCalculator>();
             serviceCollection.AddSingleton<IDiscountCalculator, PercentDiscountCalculator>();

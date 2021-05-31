@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CourierService.Implementation.CouponCodeValidator
+namespace CourierService.Implementation.CouponCodeService
 {
-    public class CouponCodeValidator : ICouponCodeValidator
+    public class CouponCodeService : ICouponCodeService
     {
         private IDictionary<string, DiscountCouponCode> _discountCouponCodes;
-        public CouponCodeValidator(IDiscountCouponCodeGenerator discountCouponCodeGenerator)
+        public CouponCodeService(IDiscountCouponCodeGenerator discountCouponCodeGenerator)
         {
             _discountCouponCodes = discountCouponCodeGenerator.GenerateDiscountCouponCodes();
         }

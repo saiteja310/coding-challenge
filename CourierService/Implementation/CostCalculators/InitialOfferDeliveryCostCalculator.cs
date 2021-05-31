@@ -14,22 +14,22 @@ namespace CourierService.Implementation.CostCalculators
     {
         private readonly int MAX_APPLICABLE_DISCOUNTS = 1;
 
-        private readonly ICouponCodeValidator _couponCodeValidator;
+        private readonly ICouponCodeService _couponCodeService;
 
         private readonly DiscountCalculatorFactory _discountCalculatorFactory;
-        public InitialOfferDeliveryCostCalculator(ICouponCodeValidator couponCodeValidator, DiscountCalculatorFactory discountCalculatorFactory)
+        public InitialOfferDeliveryCostCalculator(ICouponCodeService couponCodeValidator, DiscountCalculatorFactory discountCalculatorFactory)
         {
-            _couponCodeValidator = couponCodeValidator;
+            _couponCodeService = couponCodeValidator;
             _discountCalculatorFactory = discountCalculatorFactory;
         }
 
         public override double Calculate()
         {
-            var coupon = _couponCodeValidator.GetCouponCode(Discounts.FirstOrDefault());
+            var coupon = _couponCodeService.GetCouponCode(Discounts.FirstOrDefault());
 
             double totalPrice = BasePrice + (Package.Weight * 10) + (Package.DistanceInKm * 5);
             double discount = 0;
-            if (_couponCodeValidator.ValidateCouponCode(Package, coupon))
+            if (_couponCodeService.ValidateCouponCode(Package, coupon))
             {
                 discount = _discountCalculatorFactory.CalculateDiscount(totalPrice, coupon);
             }
